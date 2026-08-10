@@ -121,7 +121,7 @@ export default function About() {
     <section
       id="about"
       ref={ref}
-      className="py-20 md:py-28 lg:py-32 relative"
+      className="py-24 md:py-32 lg:py-36 relative"
       aria-label="About Tawfik Labbay"
     >
       {/* Background blob */}
@@ -134,7 +134,7 @@ export default function About() {
         aria-hidden="true"
       />
 
-      <div className="max-w-6xl mx-auto px-5 md:px-8 lg:px-12">
+      <div className="w-full max-w-6xl mx-auto px-5 md:px-8 lg:px-12">
         {/* Section header */}
         <motion.div
           variants={container}
@@ -158,7 +158,7 @@ export default function About() {
         </motion.div>
 
         {/* Main split layout */}
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-28 xl:gap-36 items-start">
           {/* Left — Profile image with 3D tilt */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -168,18 +168,17 @@ export default function About() {
             <TiltCard className="relative">
               {/* Avatar placeholder */}
               <div
-                className="relative rounded-3xl overflow-hidden"
+                className="relative rounded-3xl overflow-hidden p-12 md:p-16 flex flex-col items-center justify-center"
                 style={{
                   background: "linear-gradient(135deg, #0e1117 0%, #050505 100%)",
                   border: "1px solid rgba(0,217,255,0.2)",
                   boxShadow:
                     "0 0 40px rgba(0,217,255,0.1), 0 0 0 1px rgba(0,217,255,0.05) inset, 0 24px 64px rgba(0,0,0,0.6)",
-                  aspectRatio: "4/5",
                 }}
               >
                 {/* Gradient avatar background */}
                 <div
-                  className="absolute inset-0"
+                  className="absolute inset-0 pointer-events-none"
                   style={{
                     background:
                       "radial-gradient(ellipse at 50% 30%, rgba(0,217,255,0.15) 0%, transparent 60%), linear-gradient(180deg, rgba(0,217,255,0.05) 0%, transparent 100%)",
@@ -188,7 +187,7 @@ export default function About() {
                 />
 
                 {/* Silhouette / initials */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <div className="relative z-10 flex flex-col items-center justify-center">
                   <div
                     className="w-32 h-32 rounded-full flex items-center justify-center mb-4"
                     style={{
@@ -210,9 +209,9 @@ export default function About() {
                   </p>
                 </div>
 
-                {/* Corner decorations removed */}
+                {/* Available Status */}
                 <div
-                  className="absolute bottom-4 left-4"
+                  className="mt-8 relative z-10"
                   style={{
                     background: "rgba(14,17,23,0.8)",
                     border: "1px solid rgba(0,217,255,0.2)",
@@ -237,12 +236,12 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.4, duration: 0.7 }}
-              className="grid grid-cols-2 gap-4 mt-6"
+              className="grid grid-cols-2 gap-5 md:gap-6 mt-8"
             >
               {STATS.map((stat) => (
                 <div
                   key={stat.label}
-                  className="glass-card p-6 md:p-8 min-h-[120px] justify-center flex flex-col items-center text-center"
+                  className="glass-card overflow-visible p-6 md:p-8 min-h-[130px] justify-center flex flex-col items-center text-center gap-2"
                 >
                   <span
                     className="font-display font-bold text-3xl gradient-text"
@@ -368,6 +367,8 @@ export default function About() {
           </motion.div>
         </div>
       </div>
+      {/* Section divider */}
+      <div className="section-divider" aria-hidden="true" />
     </section>
   );
 }

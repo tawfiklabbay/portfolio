@@ -124,9 +124,10 @@ function SkillCard({
 
         {/* Category badge */}
         <span
-          className="text-[10px] tracking-wider uppercase px-2 py-0.5 rounded-full"
+          className="text-[10px] tracking-widest uppercase px-3 py-1 rounded-full"
           style={{
-            background: "rgba(255,255,255,0.04)",
+            background: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(255,255,255,0.08)",
             color: "var(--text-muted)",
             fontFamily: "var(--font-mono)",
           }}
@@ -146,7 +147,7 @@ export default function Skills() {
     <section
       id="skills"
       ref={ref}
-      className="py-20 md:py-28 lg:py-32 relative"
+      className="py-24 md:py-32 lg:py-36 relative"
       style={{ background: "var(--bg-secondary)" }}
       aria-label="Skills"
     >
@@ -161,7 +162,7 @@ export default function Skills() {
         aria-hidden="true"
       />
 
-      <div className="max-w-6xl mx-auto px-5 md:px-8 lg:px-12">
+      <div className="w-full max-w-6xl mx-auto px-5 md:px-8 lg:px-12">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -187,7 +188,7 @@ export default function Skills() {
         </motion.div>
 
         {/* Skill cards grid */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5 md:gap-6">
           {SKILLS.map((skill, i) => (
             <SkillCard key={skill.name} skill={skill} index={i} inView={inView} />
           ))}
@@ -207,6 +208,8 @@ export default function Skills() {
           aria-hidden="true"
         />
       </div>
+      {/* Section divider */}
+      <div className="section-divider" aria-hidden="true" />
     </section>
   );
 }

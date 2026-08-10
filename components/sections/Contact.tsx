@@ -107,7 +107,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="py-20 md:py-28 lg:py-32 relative"
+      className="py-24 md:py-32 lg:py-36 relative overflow-hidden"
       aria-label="Contact Tawfik Labbay"
     >
       {/* Background glow */}
@@ -121,7 +121,7 @@ export default function Contact() {
         aria-hidden="true"
       />
 
-      <div className="max-w-6xl mx-auto px-5 md:px-8 lg:px-12">
+      <div className="w-full max-w-6xl mx-auto px-5 md:px-8 lg:px-12">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -153,9 +153,9 @@ export default function Contact() {
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.15, duration: 0.7 }}
-            className="lg:col-span-2 flex flex-col gap-6"
+            className="lg:col-span-2 flex flex-col gap-8"
           >
-            <div className="glass-card p-8 space-y-4">
+            <div className="glass-card p-10 md:p-12 space-y-5">
               <h3 className="font-display font-bold text-xl text-white mb-6">
                 Connect With Me
               </h3>
@@ -245,7 +245,7 @@ export default function Contact() {
             transition={{ delay: 0.25, duration: 0.7 }}
             className="lg:col-span-3"
           >
-            <div className="glass-card p-8">
+            <div className="glass-card p-10 md:p-12">
               <AnimatePresence mode="wait">
                 {formState === "success" ? (
                   <motion.div
@@ -287,7 +287,7 @@ export default function Contact() {
                   <motion.form
                     key="form"
                     onSubmit={handleSubmit}
-                    className="space-y-5"
+                    className="space-y-6"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -406,7 +406,7 @@ export default function Contact() {
                     {/* Submit */}
                     <MagneticButton
                       onClick={() => {}}
-                      className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl font-semibold text-sm transition-all duration-300"
+                      className="w-full flex items-center justify-center gap-3 py-5 rounded-2xl font-semibold text-sm transition-all duration-300"
                       style={{
                         background: "linear-gradient(135deg, #00d9ff, #5eeaff)",
                         color: "#050505",

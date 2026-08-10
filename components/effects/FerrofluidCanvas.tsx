@@ -15,7 +15,7 @@ export default function FerrofluidCanvas() {
     const gl = canvas.getContext("webgl2", {
       antialias: true,
       alpha: true,
-      premultipliedAlpha: false,
+      premultipliedAlpha: true,
     }) as WebGL2RenderingContext | null;
 
     if (!gl) {

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/components/providers/Providers";
-
+import CustomCursor from "@/components/cursor/CustomCursor";
 export const metadata: Metadata = {
   metadataBase: new URL("https://tawfiklabbay.dev"),
   title: {
@@ -102,6 +102,7 @@ export default function RootLayout({
       <body className="min-h-full bg-[#050505] antialiased">
         {/* Global noise overlay */}
         <div className="noise-overlay" aria-hidden="true" />
+        <CustomCursor />
         {/* App */}
         <Providers>{children}</Providers>
       </body>

@@ -131,23 +131,17 @@ function AchievementCard({
         {/* Description */}
         <p
           className="text-sm leading-loose mb-8"
-          style={{ color: "var(--text-muted)", fontFamily: "var(--font-body)" }}
+          style={{ color: "var(--text-muted)", fontFamily: "var(--font-body)", lineHeight: "1.9" }}
         >
           {achievement.desc}
         </p>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2.5">
           {achievement.tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 rounded-full text-[11px]"
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                color: "var(--text-muted)",
-                fontFamily: "var(--font-mono)",
-              }}
+              className="pill"
             >
               {tag}
             </span>
@@ -166,7 +160,7 @@ export default function Achievements() {
     <section
       id="achievements"
       ref={ref}
-      className="py-20 md:py-28 lg:py-32 relative"
+      className="py-24 md:py-32 lg:py-36 relative overflow-hidden"
       style={{ background: "var(--bg-secondary)" }}
       aria-label="Achievements"
     >
@@ -180,7 +174,7 @@ export default function Achievements() {
         aria-hidden="true"
       />
 
-      <div className="max-w-6xl mx-auto px-5 md:px-8 lg:px-12">
+      <div className="w-full max-w-6xl mx-auto px-5 md:px-8 lg:px-12">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -200,12 +194,14 @@ export default function Achievements() {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {ACHIEVEMENTS.map((a, i) => (
             <AchievementCard key={a.title} achievement={a} index={i} inView={inView} />
           ))}
         </div>
       </div>
+      {/* Section divider */}
+      <div className="section-divider" aria-hidden="true" />
     </section>
   );
 }

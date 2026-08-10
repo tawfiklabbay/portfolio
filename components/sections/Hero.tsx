@@ -148,8 +148,7 @@ export default function Hero() {
     <section
       id="home"
       ref={heroRef}
-      className="relative flex items-center justify-center overflow-hidden"
-      style={{ minHeight: "100dvh" }}
+      className="relative flex items-center justify-center overflow-hidden min-h-[100dvh]"
       aria-label="Hero section"
     >
       {/* ── Backgrounds ─────────────────────────────────────────────── */}
@@ -211,7 +210,7 @@ export default function Hero() {
 
       {/* ── Content ──────────────────────────────────────────────────── */}
       <div
-        className="relative flex flex-col items-center text-center max-w-6xl mx-auto px-5 md:px-8 lg:px-12"
+        className="relative flex flex-col items-center text-center w-full max-w-6xl mx-auto px-5 md:px-8 lg:px-12"
         style={{ zIndex: 10 }}
       >
         {/* Badge */}
@@ -283,7 +282,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.7 }}
-          className="mt-6 max-w-xl text-base md:text-lg leading-relaxed"
+          className="mt-6 max-w-xl text-center text-base md:text-lg leading-relaxed"
           style={{ color: "var(--text-muted)", fontFamily: "var(--font-body)" }}
         >
           Building real-world security solutions and award-winning applications
@@ -385,12 +384,8 @@ export default function Hero() {
             (tech, i) => (
               <span
                 key={tech}
-                className="px-3 py-1.5 rounded-full text-xs"
+                className="pill"
                 style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  color: "var(--text-muted)",
-                  fontFamily: "var(--font-mono)",
                   animationDelay: `${i * 0.1}s`,
                 }}
               >

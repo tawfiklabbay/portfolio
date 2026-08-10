@@ -226,7 +226,7 @@ export default function FeaturedProject() {
     <section
       id="project"
       ref={ref}
-      className="py-20 md:py-28 lg:py-32 relative overflow-hidden"
+      className="py-24 md:py-32 lg:py-36 relative overflow-hidden"
       aria-label="Featured Project — Project Argus"
     >
       {/* Background atmosphere */}
@@ -239,7 +239,7 @@ export default function FeaturedProject() {
         aria-hidden="true"
       />
 
-      <div className="max-w-6xl mx-auto px-5 md:px-8 lg:px-12">
+      <div className="w-full max-w-6xl mx-auto px-5 md:px-8 lg:px-12">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -380,7 +380,7 @@ export default function FeaturedProject() {
                     >
                       Key Features
                     </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
                       {FEATURES.map((feat, i) => (
                         <motion.div
                           key={feat.label}
@@ -426,13 +426,7 @@ export default function FeaturedProject() {
                         (tech) => (
                           <span
                             key={tech}
-                            className="px-3 py-1.5 rounded-full text-xs"
-                            style={{
-                              background: "rgba(255,255,255,0.04)",
-                              border: "1px solid rgba(255,255,255,0.08)",
-                              color: "var(--text-muted)",
-                              fontFamily: "var(--font-mono)",
-                            }}
+                            className="pill"
                           >
                             {tech}
                           </span>
@@ -496,6 +490,8 @@ export default function FeaturedProject() {
           </SpotlightCard>
         </motion.div>
       </div>
+      {/* Section divider */}
+      <div className="section-divider" aria-hidden="true" />
     </section>
   );
 }
