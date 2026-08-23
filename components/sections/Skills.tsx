@@ -85,30 +85,37 @@ function SkillCard({
         ref={cardRef}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
-        className="group flex flex-col items-center gap-4 p-6 md:p-8 rounded-2xl cursor-default select-none"
+        className="group flex flex-col items-center justify-center gap-3 rounded-2xl cursor-default select-none"
         style={{
           background: CATEGORY_COLORS[skill.category] || "rgba(255,255,255,0.04)",
-          border: "1px solid rgba(255,255,255,0.06)",
+          border: "1px solid rgba(255,255,255,0.08)",
           willChange: "transform",
-          transition: "transform 0.15s ease, box-shadow 0.2s ease",
+          transition: "transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease",
+          padding: "1.25rem 1rem",
+          minHeight: "140px",
+          aspectRatio: "1 / 1",
+          display: "flex",
         }}
         onMouseEnter={(e) => {
           (e.currentTarget as HTMLDivElement).style.boxShadow =
             "0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(0,217,255,0.08)";
           (e.currentTarget as HTMLDivElement).style.borderColor =
-            "rgba(0,217,255,0.2)";
+            "rgba(0,217,255,0.25)";
         }}
         data-cursor-hover
       >
         {/* Icon */}
         <div
-          className="w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold transition-transform duration-200 group-hover:scale-110"
+          className="rounded-xl flex items-center justify-center font-bold transition-transform duration-200 group-hover:scale-110"
           style={{
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(255,255,255,0.06)",
+            width: "3rem",
+            height: "3rem",
+            background: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(255,255,255,0.08)",
             fontFamily: skill.icon.length > 2 ? "var(--font-mono)" : "inherit",
-            fontSize: skill.icon.length > 2 ? "0.7rem" : "1.25rem",
+            fontSize: skill.icon.length > 2 ? "0.65rem" : "1.4rem",
             color: "#00d9ff",
+            flexShrink: 0,
           }}
         >
           {skill.icon}
@@ -116,16 +123,21 @@ function SkillCard({
 
         {/* Name */}
         <span
-          className="text-sm font-medium text-center leading-tight"
-          style={{ color: "#e4e4e7", fontFamily: "var(--font-body)" }}
+          className="font-medium text-center leading-tight"
+          style={{
+            color: "#e4e4e7",
+            fontFamily: "var(--font-body)",
+            fontSize: "0.8125rem",
+          }}
         >
           {skill.name}
         </span>
 
         {/* Category badge */}
         <span
-          className="text-[10px] tracking-widest uppercase px-3 py-1 rounded-full"
+          className="tracking-widest uppercase px-2.5 py-1 rounded-full"
           style={{
+            fontSize: "0.6rem",
             background: "rgba(255,255,255,0.06)",
             border: "1px solid rgba(255,255,255,0.08)",
             color: "var(--text-muted)",
@@ -162,7 +174,16 @@ export default function Skills() {
         aria-hidden="true"
       />
 
-      <div className="w-full max-w-6xl mx-auto px-5 md:px-8 lg:px-12">
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "var(--container-max)",
+          marginLeft: "auto",
+          marginRight: "auto",
+          paddingLeft: "var(--container-px-sm)",
+          paddingRight: "var(--container-px-sm)",
+        }}
+      >
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -176,19 +197,34 @@ export default function Skills() {
           >
             02 / Skills
           </p>
-          <h2 className="font-display text-4xl md:text-6xl font-bold text-white mb-4">
+          <h2
+            className="font-display font-bold text-white mb-4"
+            style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
+          >
             My Arsenal
           </h2>
           <p
-            className="text-base max-w-lg"
-            style={{ color: "var(--text-muted)", fontFamily: "var(--font-body)" }}
+            className="text-base"
+            style={{
+              color: "var(--text-muted)",
+              fontFamily: "var(--font-body)",
+              maxWidth: "32rem",
+              lineHeight: "1.7",
+            }}
           >
             Technologies I use to build secure, performant, and elegant solutions.
           </p>
         </motion.div>
 
-        {/* Skill cards grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5 md:gap-6">
+        {/* Skill cards grid — 2 cols mobile, 3 cols tablet, 4-6 cols desktop */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: "1.25rem",
+          }}
+          className="sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
+        >
           {SKILLS.map((skill, i) => (
             <SkillCard key={skill.name} skill={skill} index={i} inView={inView} />
           ))}
@@ -209,7 +245,7 @@ export default function Skills() {
         />
       </div>
       {/* Section divider */}
-      <div className="section-divider" aria-hidden="true" />
+      <div className="section-divider mt-0" aria-hidden="true" />
     </section>
   );
 }

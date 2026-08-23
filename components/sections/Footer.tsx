@@ -12,8 +12,12 @@ export default function Footer() {
 
   return (
     <footer
-      className="relative pt-16 pb-10 overflow-hidden"
-      style={{ background: "var(--bg-secondary)" }}
+      className="relative overflow-hidden"
+      style={{
+        background: "var(--bg-secondary)",
+        paddingTop: "5rem",
+        paddingBottom: "3rem",
+      }}
       role="contentinfo"
     >
       {/* Glowing divider */}
@@ -27,7 +31,15 @@ export default function Footer() {
         aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div
+        style={{
+          maxWidth: "var(--container-max)",
+          marginLeft: "auto",
+          marginRight: "auto",
+          paddingLeft: "var(--container-px-sm)",
+          paddingRight: "var(--container-px-sm)",
+        }}
+      >
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Brand */}
           <div className="flex flex-col items-center md:items-start gap-2">
@@ -47,7 +59,7 @@ export default function Footer() {
 
           {/* Nav links */}
           <nav aria-label="Footer navigation">
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8">
               {["Home", "About", "Skills", "Project", "Achievements", "Contact"].map((item) => (
                 <button
                   key={item}
@@ -78,7 +90,7 @@ export default function Footer() {
             whileHover={{ y: -4, scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400 }}
-            className="w-10 h-10 rounded-full flex items-center justify-center"
+            className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
             style={{
               background: "rgba(0,217,255,0.08)",
               border: "1px solid rgba(0,217,255,0.2)",
@@ -93,7 +105,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div
-          className="mt-10 pt-6 border-t flex flex-col md:flex-row items-center justify-between gap-4"
+          className="mt-12 pt-6 border-t flex flex-col md:flex-row items-center justify-between gap-4"
           style={{ borderColor: "var(--border)" }}
         >
           <motion.p

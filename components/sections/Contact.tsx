@@ -121,7 +121,16 @@ export default function Contact() {
         aria-hidden="true"
       />
 
-      <div className="w-full max-w-6xl mx-auto px-5 md:px-8 lg:px-12">
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "var(--container-max)",
+          marginLeft: "auto",
+          marginRight: "auto",
+          paddingLeft: "var(--container-px-sm)",
+          paddingRight: "var(--container-px-sm)",
+        }}
+      >
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -135,7 +144,10 @@ export default function Contact() {
           >
             05 / Contact
           </p>
-          <h2 className="font-display text-4xl md:text-6xl font-bold text-white mb-4">
+          <h2
+            className="font-display font-bold text-white mb-4"
+            style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
+          >
             Let&apos;s Build Something
           </h2>
           <p

@@ -239,7 +239,16 @@ export default function FeaturedProject() {
         aria-hidden="true"
       />
 
-      <div className="w-full max-w-6xl mx-auto px-5 md:px-8 lg:px-12">
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "var(--container-max)",
+          marginLeft: "auto",
+          marginRight: "auto",
+          paddingLeft: "var(--container-px-sm)",
+          paddingRight: "var(--container-px-sm)",
+        }}
+      >
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -253,7 +262,10 @@ export default function FeaturedProject() {
           >
             03 / Featured Project
           </p>
-          <h2 className="font-display text-4xl md:text-6xl font-bold text-white mb-4">
+          <h2
+            className="font-display font-bold text-white mb-4"
+            style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
+          >
             The Centrepiece
           </h2>
         </motion.div>
@@ -319,7 +331,7 @@ export default function FeaturedProject() {
             {/* Animated gradient border */}
             <div className="animated-border absolute inset-0 rounded-[20px]" aria-hidden="true" />
 
-            <div className="relative p-8 md:p-12">
+            <div className="relative" style={{ padding: "clamp(1.5rem, 4vw, 3rem)" }}>
               <div className="grid lg:grid-cols-2 gap-12 items-start">
                 {/* Left — Info */}
                 <div className="space-y-8">

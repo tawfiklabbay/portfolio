@@ -148,7 +148,8 @@ export default function Hero() {
     <section
       id="home"
       ref={heroRef}
-      className="relative flex items-center justify-center overflow-hidden min-h-[100dvh]"
+      className="relative flex items-center justify-center overflow-hidden"
+      style={{ minHeight: "100dvh" }}
       aria-label="Hero section"
     >
       {/* ── Backgrounds ─────────────────────────────────────────────── */}
@@ -210,8 +211,17 @@ export default function Hero() {
 
       {/* ── Content ──────────────────────────────────────────────────── */}
       <div
-        className="relative flex flex-col items-center text-center w-full max-w-6xl mx-auto px-5 md:px-8 lg:px-12"
-        style={{ zIndex: 10 }}
+        className="relative flex flex-col items-center text-center w-full"
+        style={{
+          maxWidth: "var(--container-max)",
+          marginLeft: "auto",
+          marginRight: "auto",
+          paddingLeft: "var(--container-px-sm)",
+          paddingRight: "var(--container-px-sm)",
+          paddingTop: "80px",
+          paddingBottom: "80px",
+          zIndex: 10,
+        }}
       >
         {/* Badge */}
         <motion.div
@@ -238,14 +248,15 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        {/* Name */}
+        {/* Name — responsive type scale */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.9, ease: [0.19, 1, 0.22, 1] }}
           className="font-display font-bold text-white leading-none tracking-tight"
           style={{
-            fontSize: "clamp(3.5rem, 10vw, 8rem)",
+            fontSize: "clamp(2.5rem, 10vw, 8rem)",
+            lineHeight: 1.05,
           }}
         >
           Tawfik{" "}
@@ -257,7 +268,7 @@ export default function Hero() {
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ delay: 0.9, duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
-          className="my-6 h-px w-32"
+          className="my-8 h-px w-32"
           style={{
             background:
               "linear-gradient(90deg, transparent, rgba(0,217,255,0.6), transparent)",
@@ -270,7 +281,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.0, duration: 0.7 }}
-          className="text-2xl md:text-3xl lg:text-4xl font-display font-medium min-h-[2.5rem]"
+          className="font-display font-medium"
+          style={{
+            fontSize: "clamp(1.25rem, 3.5vw, 2.5rem)",
+            minHeight: "3rem",
+          }}
           aria-live="polite"
           aria-label="Current role"
         >
@@ -282,8 +297,14 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.7 }}
-          className="mt-6 max-w-xl text-center text-base md:text-lg leading-relaxed"
-          style={{ color: "var(--text-muted)", fontFamily: "var(--font-body)" }}
+          className="mt-8 text-center"
+          style={{
+            maxWidth: "38rem",
+            fontSize: "clamp(1rem, 1.5vw, 1.125rem)",
+            lineHeight: 1.7,
+            color: "var(--text-muted)",
+            fontFamily: "var(--font-body)",
+          }}
         >
           Building real-world security solutions and award-winning applications
           where offensive security meets elegant software engineering.
@@ -294,7 +315,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.4, duration: 0.7 }}
-          className="mt-10 flex flex-col sm:flex-row items-center gap-4"
+          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           {/* Primary */}
           <button
@@ -307,7 +328,7 @@ export default function Hero() {
               fontFamily: "var(--font-body)",
               fontSize: "0.95rem",
               fontWeight: 600,
-              padding: "1rem 2rem",
+              padding: "0.875rem 2rem",
               borderRadius: "9999px",
               display: "inline-flex",
               alignItems: "center",
@@ -345,7 +366,7 @@ export default function Hero() {
               fontFamily: "var(--font-body)",
               fontSize: "0.95rem",
               fontWeight: 600,
-              padding: "1rem 2rem",
+              padding: "0.875rem 2rem",
               borderRadius: "9999px",
               display: "inline-flex",
               alignItems: "center",
