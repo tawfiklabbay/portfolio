@@ -22,7 +22,7 @@ const SOCIAL_LINKS = [
     Icon: GitHubIcon,
     label: "GitHub",
     href: "https://github.com/tawfiklabbay",
-    color: "#e4e4e7",
+    color: "var(--text-bright)",
   },
   {
     Icon: LinkedInIcon,
@@ -34,7 +34,7 @@ const SOCIAL_LINKS = [
     Icon: Mail,
     label: "Email",
     href: "mailto:tawfik@example.com",
-    color: "#00d9ff",
+    color: "var(--accent-primary)",
   },
 ];
 
@@ -107,7 +107,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="py-24 md:py-32 lg:py-36 relative overflow-hidden"
+      className="section-padding relative overflow-hidden"
       aria-label="Contact Tawfik Labbay"
     >
       {/* Background glow */}
@@ -121,39 +121,17 @@ export default function Contact() {
         aria-hidden="true"
       />
 
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "var(--container-max)",
-          marginLeft: "auto",
-          marginRight: "auto",
-          paddingLeft: "var(--container-px-sm)",
-          paddingRight: "var(--container-px-sm)",
-        }}
-      >
+      <div className="container-section">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mb-16 text-center"
+          className="section-header section-header-center"
         >
-          <p
-            className="text-xs tracking-[0.25em] uppercase mb-4"
-            style={{ color: "#00d9ff", fontFamily: "var(--font-mono)" }}
-          >
-            05 / Contact
-          </p>
-          <h2
-            className="font-display font-bold text-white mb-4"
-            style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
-          >
-            Let&apos;s Build Something
-          </h2>
-          <p
-            className="text-base max-w-lg mx-auto"
-            style={{ color: "var(--text-muted)", fontFamily: "var(--font-body)" }}
-          >
+          <p className="section-eyebrow">05 / Contact</p>
+          <h2 className="section-title">Let&apos;s Build Something</h2>
+          <p className="section-lede">
             Have a project in mind or want to discuss security solutions?
             I&apos;m open to collaborations and opportunities.
           </p>
@@ -167,7 +145,7 @@ export default function Contact() {
             transition={{ delay: 0.15, duration: 0.7 }}
             className="lg:col-span-2 flex flex-col gap-8"
           >
-            <div className="glass-card p-10 md:p-12 space-y-5">
+            <div className="glass-card card-pad-lg space-y-5">
               <h3 className="font-display font-bold text-xl text-white mb-6">
                 Connect With Me
               </h3>
@@ -183,8 +161,8 @@ export default function Contact() {
                     border: "1px solid rgba(255,255,255,0.06)",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(0,217,255,0.2)";
-                    (e.currentTarget as HTMLAnchorElement).style.background = "rgba(0,217,255,0.04)";
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--accent-20)";
+                    (e.currentTarget as HTMLAnchorElement).style.background = "var(--accent-04)";
                   }}
                   onMouseLeave={(e) => {
                     (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.06)";
@@ -206,7 +184,7 @@ export default function Contact() {
 
                   <span
                     className="font-medium text-sm"
-                    style={{ color: "#e4e4e7", fontFamily: "var(--font-body)" }}
+                    style={{ color: "var(--text-bright)", fontFamily: "var(--font-body)" }}
                   >
                     {link.label}
                   </span>
@@ -218,10 +196,10 @@ export default function Contact() {
             <a
               href="/resume.pdf"
               download
-              className="glass-card p-8 flex items-center gap-4 transition-all duration-200"
+              className="glass-card card-pad flex items-center gap-4 transition-all duration-200"
               style={{ textDecoration: "none" }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(0,217,255,0.25)";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "var(--accent-25)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.1)";
@@ -232,11 +210,11 @@ export default function Contact() {
               <div
                 className="w-12 h-12 rounded-2xl flex items-center justify-center"
                 style={{
-                  background: "rgba(0,217,255,0.1)",
+                  background: "var(--accent-10)",
                   border: "1px solid rgba(0,217,255,0.2)",
                 }}
               >
-                <Download size={20} style={{ color: "#00d9ff" }} aria-hidden="true" />
+                <Download size={20} style={{ color: "var(--accent-primary)" }} aria-hidden="true" />
               </div>
               <div>
                 <p className="font-display font-bold text-white text-sm">Download Resume</p>
@@ -257,7 +235,7 @@ export default function Contact() {
             transition={{ delay: 0.25, duration: 0.7 }}
             className="lg:col-span-3"
           >
-            <div className="glass-card p-10 md:p-12">
+            <div className="glass-card card-pad-lg">
               <AnimatePresence mode="wait">
                 {formState === "success" ? (
                   <motion.div
@@ -270,11 +248,11 @@ export default function Contact() {
                     <div
                       className="w-16 h-16 rounded-2xl flex items-center justify-center"
                       style={{
-                        background: "rgba(0,255,136,0.1)",
+                        background: "rgba(0, 255, 136, 0.1)",
                         border: "1px solid rgba(0,255,136,0.3)",
                       }}
                     >
-                      <CheckCircle2 size={32} style={{ color: "#00ff88" }} />
+                      <CheckCircle2 size={32} style={{ color: "var(--success)" }} />
                     </div>
                     <h3 className="font-display font-bold text-2xl text-white">
                       Message Sent!
@@ -286,9 +264,9 @@ export default function Contact() {
                       onClick={() => setFormState("idle")}
                       className="mt-4 px-6 py-2 rounded-xl text-sm"
                       style={{
-                        background: "rgba(0,217,255,0.1)",
+                        background: "var(--accent-10)",
                         border: "1px solid rgba(0,217,255,0.2)",
-                        color: "#00d9ff",
+                        color: "var(--accent-primary)",
                         fontFamily: "var(--font-body)",
                       }}
                     >
@@ -307,11 +285,7 @@ export default function Contact() {
                   >
                     {/* Name */}
                     <div>
-                      <label
-                        htmlFor="contact-name"
-                        className="block text-xs mb-2"
-                        style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}
-                      >
+                      <label htmlFor="contact-name" className="field-label">
                         Name
                       </label>
                       <input
@@ -322,21 +296,7 @@ export default function Contact() {
                         onChange={(e) =>
                           setFields((f) => ({ ...f, name: e.target.value }))
                         }
-                        className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200"
-                        style={{
-                          background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(255,255,255,0.08)",
-                          color: "#fff",
-                          fontFamily: "var(--font-body)",
-                        }}
-                        onFocus={(e) => {
-                          (e.target as HTMLInputElement).style.borderColor = "rgba(0,217,255,0.4)";
-                          (e.target as HTMLInputElement).style.boxShadow = "0 0 0 3px rgba(0,217,255,0.08)";
-                        }}
-                        onBlur={(e) => {
-                          (e.target as HTMLInputElement).style.borderColor = "rgba(255,255,255,0.08)";
-                          (e.target as HTMLInputElement).style.boxShadow = "none";
-                        }}
+                        className="field-input"
                         placeholder="Your name"
                         autoComplete="name"
                       />
@@ -344,11 +304,7 @@ export default function Contact() {
 
                     {/* Email */}
                     <div>
-                      <label
-                        htmlFor="contact-email"
-                        className="block text-xs mb-2"
-                        style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}
-                      >
+                      <label htmlFor="contact-email" className="field-label">
                         Email
                       </label>
                       <input
@@ -359,21 +315,7 @@ export default function Contact() {
                         onChange={(e) =>
                           setFields((f) => ({ ...f, email: e.target.value }))
                         }
-                        className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200"
-                        style={{
-                          background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(255,255,255,0.08)",
-                          color: "#fff",
-                          fontFamily: "var(--font-body)",
-                        }}
-                        onFocus={(e) => {
-                          (e.target as HTMLInputElement).style.borderColor = "rgba(0,217,255,0.4)";
-                          (e.target as HTMLInputElement).style.boxShadow = "0 0 0 3px rgba(0,217,255,0.08)";
-                        }}
-                        onBlur={(e) => {
-                          (e.target as HTMLInputElement).style.borderColor = "rgba(255,255,255,0.08)";
-                          (e.target as HTMLInputElement).style.boxShadow = "none";
-                        }}
+                        className="field-input"
                         placeholder="your@email.com"
                         autoComplete="email"
                       />
@@ -381,11 +323,7 @@ export default function Contact() {
 
                     {/* Message */}
                     <div>
-                      <label
-                        htmlFor="contact-message"
-                        className="block text-xs mb-2"
-                        style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}
-                      >
+                      <label htmlFor="contact-message" className="field-label">
                         Message
                       </label>
                       <textarea
@@ -396,42 +334,21 @@ export default function Contact() {
                         onChange={(e) =>
                           setFields((f) => ({ ...f, message: e.target.value }))
                         }
-                        className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all duration-200 resize-none"
-                        style={{
-                          background: "rgba(255,255,255,0.04)",
-                          border: "1px solid rgba(255,255,255,0.08)",
-                          color: "#fff",
-                          fontFamily: "var(--font-body)",
-                        }}
-                        onFocus={(e) => {
-                          (e.target as HTMLTextAreaElement).style.borderColor = "rgba(0,217,255,0.4)";
-                          (e.target as HTMLTextAreaElement).style.boxShadow = "0 0 0 3px rgba(0,217,255,0.08)";
-                        }}
-                        onBlur={(e) => {
-                          (e.target as HTMLTextAreaElement).style.borderColor = "rgba(255,255,255,0.08)";
-                          (e.target as HTMLTextAreaElement).style.boxShadow = "none";
-                        }}
+                        className="field-input"
                         placeholder="Tell me about your project..."
                       />
                     </div>
 
                     {/* Submit */}
                     <MagneticButton
-                      onClick={() => {}}
-                      className="w-full flex items-center justify-center gap-3 py-5 rounded-2xl font-semibold text-sm transition-all duration-300"
-                      style={{
-                        background: "linear-gradient(135deg, #00d9ff, #5eeaff)",
-                        color: "#050505",
-                        fontFamily: "var(--font-body)",
-                        boxShadow: "0 0 30px rgba(0,217,255,0.25), 0 4px 16px rgba(0,0,0,0.4)",
-                        cursor: formState === "loading" ? "wait" : "pointer",
-                      }}
+                      className="btn btn-primary btn-block py-5"
+                      style={{ cursor: formState === "loading" ? "wait" : "pointer" }}
                       aria-label="Send message"
                     >
                       {formState === "loading" ? (
                         <>
-                          <div
-                            className="w-4 h-4 rounded-full border-2 border-[#050505] border-t-transparent animate-spin"
+                          <span
+                            className="w-4 h-4 rounded-full border-2 border-current border-t-transparent animate-spin"
                             aria-hidden="true"
                           />
                           Sending...

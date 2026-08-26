@@ -64,9 +64,9 @@ function TypewriterRoles() {
   }, [displayed, deleting, roleIndex, paused]);
 
   return (
-    <span className="text-[#00d9ff] font-display">
+    <span className="text-[var(--accent-primary)] font-display">
       {displayed}
-      <span className="animate-blink ml-0.5 inline-block w-0.5 h-8 bg-[#00d9ff] align-middle" />
+      <span className="animate-blink ml-0.5 inline-block w-0.5 h-8 bg-[var(--accent-primary)] align-middle" />
     </span>
   );
 }
@@ -211,17 +211,8 @@ export default function Hero() {
 
       {/* ── Content ──────────────────────────────────────────────────── */}
       <div
-        className="relative flex flex-col items-center text-center w-full"
-        style={{
-          maxWidth: "var(--container-max)",
-          marginLeft: "auto",
-          marginRight: "auto",
-          paddingLeft: "var(--container-px-sm)",
-          paddingRight: "var(--container-px-sm)",
-          paddingTop: "80px",
-          paddingBottom: "80px",
-          zIndex: 10,
-        }}
+        className="container-section relative flex flex-col items-center text-center py-20"
+        style={{ zIndex: 10 }}
       >
         {/* Badge */}
         <motion.div
@@ -233,15 +224,15 @@ export default function Hero() {
           <span
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium"
             style={{
-              background: "rgba(0,217,255,0.06)",
+              background: "var(--accent-06)",
               border: "1px solid rgba(0,217,255,0.2)",
-              color: "#00d9ff",
+              color: "var(--accent-primary)",
               fontFamily: "var(--font-body)",
               letterSpacing: "0.1em",
             }}
           >
             <span
-              className="w-1.5 h-1.5 rounded-full bg-[#00d9ff] animate-pulse-glow"
+              className="w-1.5 h-1.5 rounded-full bg-[var(--accent-primary)] animate-pulse-glow"
               aria-hidden="true"
             />
             Available for opportunities
@@ -321,24 +312,7 @@ export default function Hero() {
           <button
             onClick={scrollToWork}
             data-cursor-hover
-            className="group relative transition-all duration-300 overflow-hidden"
-            style={{
-              background: "linear-gradient(135deg, #00d9ff, #5eeaff)",
-              color: "#050505",
-              fontFamily: "var(--font-body)",
-              fontSize: "0.95rem",
-              fontWeight: 600,
-              padding: "0.875rem 2rem",
-              borderRadius: "9999px",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "0.75rem",
-              width: "auto",
-              whiteSpace: "nowrap",
-              boxShadow:
-                "0 0 30px rgba(0,217,255,0.3), 0 4px 16px rgba(0,0,0,0.4)",
-            }}
+            className="btn btn-primary group relative overflow-hidden"
           >
             <span className="relative z-10">View My Work</span>
             <ArrowRight
@@ -349,8 +323,10 @@ export default function Hero() {
             <span
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               style={{
-                background: "linear-gradient(135deg, #5eeaff, #00d9ff)",
+                background:
+                  "linear-gradient(135deg, var(--accent-secondary), var(--accent-primary))",
               }}
+              aria-hidden="true"
             />
           </button>
 
@@ -358,38 +334,9 @@ export default function Hero() {
           <button
             onClick={scrollToContact}
             data-cursor-hover
-            className="group transition-all duration-300"
-            style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.12)",
-              color: "#ffffff",
-              fontFamily: "var(--font-body)",
-              fontSize: "0.95rem",
-              fontWeight: 600,
-              padding: "0.875rem 2rem",
-              borderRadius: "9999px",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "0.75rem",
-              width: "auto",
-              whiteSpace: "nowrap",
-              backdropFilter: "blur(10px)",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.borderColor =
-                "rgba(0,217,255,0.4)";
-              (e.currentTarget as HTMLButtonElement).style.background =
-                "rgba(0,217,255,0.06)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.borderColor =
-                "rgba(255,255,255,0.12)";
-              (e.currentTarget as HTMLButtonElement).style.background =
-                "rgba(255,255,255,0.04)";
-            }}
+            className="btn btn-secondary"
           >
-            <Mail size={16} />
+            <Mail size={16} aria-hidden="true" />
             Contact Me
           </button>
         </motion.div>
@@ -403,15 +350,15 @@ export default function Hero() {
         >
           {["React", "Next.js", "Python", "Kali Linux", "Node.js", "TypeScript"].map(
             (tech, i) => (
-              <span
+              <motion.span
                 key={tech}
                 className="pill"
-                style={{
-                  animationDelay: `${i * 0.1}s`,
-                }}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.8 + i * 0.06, duration: 0.4 }}
               >
                 {tech}
-              </span>
+              </motion.span>
             )
           )}
         </motion.div>

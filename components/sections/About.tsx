@@ -121,7 +121,7 @@ export default function About() {
     <section
       id="about"
       ref={ref}
-      className="py-24 md:py-32 lg:py-36 relative"
+      className="section-padding relative"
       aria-label="About Tawfik Labbay"
     >
       {/* Background blob */}
@@ -134,35 +134,18 @@ export default function About() {
         aria-hidden="true"
       />
 
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "var(--container-max)",
-          marginLeft: "auto",
-          marginRight: "auto",
-          paddingLeft: "var(--container-px-sm)",
-          paddingRight: "var(--container-px-sm)",
-        }}
-      >
+      <div className="container-section">
         {/* Section header */}
         <motion.div
           variants={container}
           initial="hidden"
           animate={inView ? "show" : "hidden"}
-          className="mb-20"
+          className="section-header"
         >
-          <motion.p
-            variants={fadeUp}
-            className="text-xs tracking-[0.25em] uppercase mb-4"
-            style={{ color: "#00d9ff", fontFamily: "var(--font-mono)" }}
-          >
+          <motion.p variants={fadeUp} className="section-eyebrow">
             01 / About
           </motion.p>
-          <motion.h2
-            variants={fadeUp}
-            className="font-display font-bold text-white"
-            style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
-          >
+          <motion.h2 variants={fadeUp} className="section-title">
             Who I Am
           </motion.h2>
         </motion.div>
@@ -178,7 +161,7 @@ export default function About() {
             <TiltCard className="relative">
               {/* Avatar card */}
               <div
-                className="relative rounded-3xl overflow-hidden flex flex-col items-center justify-center text-center"
+                className="relative rounded-[var(--radius-2xl)] overflow-hidden flex flex-col items-center justify-center text-center"
                 style={{
                   padding: "3rem 2rem",
                   background: "linear-gradient(135deg, #0e1117 0%, #050505 100%)",
@@ -226,7 +209,7 @@ export default function About() {
                   >
                     Tawfik Labbay
                   </p>
-                  <p style={{ color: "#00d9ff", fontFamily: "var(--font-mono)", fontSize: "0.75rem" }}>
+                  <p style={{ color: "var(--accent-primary)", fontFamily: "var(--font-mono)", fontSize: "0.75rem" }}>
                     Cyber Security Engineer & Full Stack Dev
                   </p>
                 </div>
@@ -237,11 +220,11 @@ export default function About() {
                   style={{
                     background: "rgba(14,17,23,0.8)",
                     border: "1px solid rgba(0,217,255,0.2)",
-                    borderRadius: "12px",
+                    borderRadius: "var(--radius-md)",
                     padding: "8px 16px",
                     backdropFilter: "blur(10px)",
                     fontFamily: "var(--font-mono)",
-                    color: "#00d9ff",
+                    color: "var(--accent-primary)",
                     fontSize: "0.75rem",
                   }}
                 >
@@ -263,8 +246,8 @@ export default function About() {
               {STATS.map((stat) => (
                 <div
                   key={stat.label}
-                  className="glass-card flex flex-col items-center justify-center text-center gap-2"
-                  style={{ padding: "1.5rem 1rem", minHeight: "110px" }}
+                  className="glass-card flex flex-col items-center justify-center text-center gap-2 p-6"
+                  style={{ minHeight: "110px" }}
                 >
                   <span className="font-display font-bold gradient-text" style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)" }}>
                     <AnimatedCounter end={stat.end} suffix={stat.suffix} />
@@ -291,14 +274,14 @@ export default function About() {
             <div className="space-y-5">
               <p
                 className="text-lg"
-                style={{ color: "#e4e4e7", fontFamily: "var(--font-body)", lineHeight: "1.75" }}
+                style={{ color: "var(--text-bright)", fontFamily: "var(--font-body)", lineHeight: "1.75" }}
               >
                 I&apos;m a passionate{" "}
-                <span style={{ color: "#00d9ff" }}>
+                <span style={{ color: "var(--accent-primary)" }}>
                   Cyber Security Engineer
                 </span>{" "}
                 and{" "}
-                <span style={{ color: "#00d9ff" }}>Full Stack Developer</span>{" "}
+                <span style={{ color: "var(--accent-primary)" }}>Full Stack Developer</span>{" "}
                 driven by an obsession with understanding how systems work — and
                 how they break.
               </p>
@@ -361,15 +344,15 @@ export default function About() {
                       <div
                         className="absolute -left-8 top-1 w-3.5 h-3.5 rounded-full border-2"
                         style={{
-                          background: "#050505",
-                          borderColor: "#00d9ff",
+                          background: "var(--bg-primary)",
+                          borderColor: "var(--accent-primary)",
                           boxShadow: "0 0 10px rgba(0,217,255,0.5)",
                         }}
                         aria-hidden="true"
                       />
                       {/* Timeline card */}
                       <div
-                        className="rounded-2xl"
+                        className="rounded-[var(--radius-lg)]"
                         style={{
                           background: "rgba(255,255,255,0.03)",
                           border: "1px solid rgba(255,255,255,0.06)",
@@ -378,7 +361,7 @@ export default function About() {
                       >
                         <span
                           className="text-xs font-mono mb-1 block"
-                          style={{ color: "#00d9ff" }}
+                          style={{ color: "var(--accent-primary)" }}
                         >
                           {item.year}
                         </span>
@@ -400,8 +383,8 @@ export default function About() {
           </motion.div>
         </div>
       </div>
-      {/* Section divider */}
-      <div className="section-divider mt-24" aria-hidden="true" />
+      {/* Seam to the next section */}
+      <div className="section-seam" aria-hidden="true" />
     </section>
   );
 }
