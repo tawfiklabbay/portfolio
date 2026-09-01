@@ -31,15 +31,7 @@ export default function Footer() {
         aria-hidden="true"
       />
 
-      <div
-        style={{
-          maxWidth: "var(--container-max)",
-          marginLeft: "auto",
-          marginRight: "auto",
-          paddingLeft: "var(--container-px-sm)",
-          paddingRight: "var(--container-px-sm)",
-        }}
-      >
+      <div className="container-section">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Brand */}
           <div className="flex flex-col items-center md:items-start gap-2">
@@ -71,7 +63,7 @@ export default function Footer() {
                   className="text-xs transition-colors duration-200"
                   style={{ color: "var(--text-muted)", fontFamily: "var(--font-body)" }}
                   onMouseEnter={(e) =>
-                    ((e.target as HTMLButtonElement).style.color = "#00d9ff")
+                    ((e.target as HTMLButtonElement).style.color = "var(--accent-primary)")
                   }
                   onMouseLeave={(e) =>
                     ((e.target as HTMLButtonElement).style.color = "var(--text-muted)")
@@ -92,9 +84,9 @@ export default function Footer() {
             transition={{ type: "spring", stiffness: 400 }}
             className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
             style={{
-              background: "rgba(0,217,255,0.08)",
+              background: "var(--accent-08)",
               border: "1px solid rgba(0,217,255,0.2)",
-              color: "#00d9ff",
+              color: "var(--accent-primary)",
             }}
             aria-label="Back to top"
             data-cursor-hover
@@ -122,7 +114,7 @@ export default function Footer() {
             style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}
           >
             Crafted with{" "}
-            <span style={{ color: "#00d9ff" }}>Next.js · GSAP · Framer Motion</span>
+            <span style={{ color: "var(--accent-primary)" }}>Next.js · GSAP · Framer Motion</span>
           </p>
         </div>
       </div>

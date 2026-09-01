@@ -7,7 +7,7 @@ import { Trophy, Star, Code2, Zap } from "lucide-react";
 const ACHIEVEMENTS = [
   {
     icon: Trophy,
-    color: "#ffcc44",
+    color: "var(--gold)",
     bg: "rgba(255,200,0,0.08)",
     border: "rgba(255,200,0,0.2)",
     title: "🏆 Paradox Hackathon — Winner",
@@ -18,9 +18,9 @@ const ACHIEVEMENTS = [
   },
   {
     icon: Code2,
-    color: "#00d9ff",
-    bg: "rgba(0,217,255,0.06)",
-    border: "rgba(0,217,255,0.15)",
+    color: "var(--accent-primary)",
+    bg: "var(--accent-06)",
+    border: "var(--accent-15)",
     title: "Full Stack Development",
     subtitle: "Proficiency",
     project: "18+ Technologies",
@@ -29,7 +29,7 @@ const ACHIEVEMENTS = [
   },
   {
     icon: Zap,
-    color: "#5eeaff",
+    color: "var(--accent-secondary)",
     bg: "rgba(94,234,255,0.06)",
     border: "rgba(94,234,255,0.15)",
     title: "Security Engineering",
@@ -78,13 +78,13 @@ function AchievementCard({
         ref={cardRef}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
-        className="relative glass-card p-8 md:p-10 h-full"
+        className="relative glass-card card-pad h-full"
         style={{
           transition: "transform 0.2s ease",
         }}
         data-cursor-hover
       >
-        <div ref={glowRef} className="absolute inset-0 rounded-[20px] pointer-events-none" aria-hidden="true" />
+        <div ref={glowRef} className="absolute inset-0 rounded-[var(--radius-xl)] pointer-events-none" aria-hidden="true" />
 
         {/* Header */}
         <div className="flex items-start gap-4 mb-6">
@@ -113,7 +113,7 @@ function AchievementCard({
 
         {/* Project */}
         <div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl mb-4"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-[var(--radius-md)] mb-4"
           style={{
             background: achievement.bg,
             border: `1px solid ${achievement.border}`,
@@ -160,7 +160,7 @@ export default function Achievements() {
     <section
       id="achievements"
       ref={ref}
-      className="py-24 md:py-32 lg:py-36 relative overflow-hidden"
+      className="section-padding relative overflow-hidden"
       style={{ background: "var(--bg-secondary)" }}
       aria-label="Achievements"
     >
@@ -174,35 +174,16 @@ export default function Achievements() {
         aria-hidden="true"
       />
 
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "var(--container-max)",
-          marginLeft: "auto",
-          marginRight: "auto",
-          paddingLeft: "var(--container-px-sm)",
-          paddingRight: "var(--container-px-sm)",
-        }}
-      >
+      <div className="container-section">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mb-16"
+          className="section-header"
         >
-          <p
-            className="text-xs tracking-[0.25em] uppercase mb-4"
-            style={{ color: "#00d9ff", fontFamily: "var(--font-mono)" }}
-          >
-            04 / Achievements
-          </p>
-          <h2
-            className="font-display font-bold text-white"
-            style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
-          >
-            Recognition
-          </h2>
+          <p className="section-eyebrow">04 / Achievements</p>
+          <h2 className="section-title">Recognition</h2>
         </motion.div>
 
         {/* Cards */}
@@ -212,8 +193,8 @@ export default function Achievements() {
           ))}
         </div>
       </div>
-      {/* Section divider */}
-      <div className="section-divider" aria-hidden="true" />
+      {/* Seam to the next section */}
+      <div className="section-seam" aria-hidden="true" />
     </section>
   );
 }

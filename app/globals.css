@@ -13,23 +13,50 @@
    CSS CUSTOM PROPERTIES — DESIGN TOKENS
    ============================================================ */
 :root {
-  /* Colors */
+  /* ── Surfaces ── */
   --bg-primary: #050505;
   --bg-secondary: #0e1117;
   --card: rgba(255, 255, 255, 0.06);
   --border: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.16);
   --border-glow: rgba(0, 217, 255, 0.3);
+
+  /* ── Accent (cyan) ──
+     One ladder of accent alphas so every glow, border and tint in the app
+     is drawn from the same set instead of ad-hoc rgba() literals. */
   --accent-primary: #00d9ff;
   --accent-secondary: #5eeaff;
+  --accent-04: rgba(0, 217, 255, 0.04);
+  --accent-06: rgba(0, 217, 255, 0.06);
+  --accent-08: rgba(0, 217, 255, 0.08);
+  --accent-10: rgba(0, 217, 255, 0.10);
+  --accent-15: rgba(0, 217, 255, 0.15);
+  --accent-20: rgba(0, 217, 255, 0.20);
+  --accent-25: rgba(0, 217, 255, 0.25);
+  --accent-40: rgba(0, 217, 255, 0.40);
+
+  /* ── Accent (gold) — awards and recognition ── */
+  --gold: #ffcc44;
+  --gold-06: rgba(255, 200, 0, 0.06);
+  --gold-08: rgba(255, 200, 0, 0.08);
+  --gold-12: rgba(255, 200, 0, 0.12);
+  --gold-20: rgba(255, 200, 0, 0.20);
+  --gold-25: rgba(255, 200, 0, 0.25);
+
+  /* ── Status ── */
+  --success: #00ff88;
+
+  /* ── Text ── */
   --text-primary: #ffffff;
+  --text-bright: #e4e4e7;
   --text-muted: #a1a1aa;
 
-  /* Fonts */
+  /* ── Fonts ── */
   --font-display: "Clash Display", sans-serif;
   --font-body: "Satoshi", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  /* Spacing Scale — 8px base unit */
+  /* ── Spacing Scale — 8px base unit ── */
   --space-1:  0.5rem;   /* 8px */
   --space-2:  1rem;     /* 16px */
   --space-3:  1.5rem;   /* 24px */
@@ -42,349 +69,501 @@
   --space-12: 6rem;     /* 96px */
   --space-16: 8rem;     /* 128px */
 
-  /* Section vertical padding */
-  --section-py: 6rem;     /* 96px mobile */
+  /* ── Section rhythm ──
+     Every section gets the same vertical padding and the same gap between
+     its header and its body, so the page scrolls at one steady cadence. */
+  --section-py: 6rem;         /* 96px mobile */
+  --section-header-gap: 4rem; /* header → content */
 
-  /* Container */
+  /* ── Container ── */
   --container-max: 1200px;
-  --container-px-sm:  1.5rem;  /* 24px mobile */
-  --container-px-md:  3rem;    /* 48px tablet */
-  --container-px-lg:  4rem;    /* 64px desktop */
+  --container-px: 1.5rem;   /* 24px mobile */
 
-  /* Grid gutters */
+  /* ── Navigation ── */
+  --nav-h: 60px;
+  --nav-offset: 1rem;
+
+  /* ── Grid gutters ── */
   --grid-gap: 1.5rem;  /* 24px */
 
-  /* Card padding */
-  --card-padding: 1.5rem;  /* 24px */
+  /* ── Card padding ── */
+  --card-padding: 2rem;     /* 32px — standard card */
+  --card-padding-lg: 2.5rem;/* 40px — feature card */
 
-  /* Typography */
-  --font-size-body-sm:  0.875rem;  /* 14px mobile */
-  --font-size-body:     1rem;      /* 16px desktop */
+  /* ── Radius scale ── */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ── Typography ── */
+  --font-size-body-sm:  0.875rem;  /* 14px */
+  --font-size-body:     1rem;      /* 16px */
   --line-height-body:   1.7;
   --line-height-heading: 1.15;
+  /* Shared responsive ladders so headings never drift between sections. */
+  --text-section-title: clamp(2rem, 5vw, 3.75rem);
+  --text-card-title:    clamp(1.75rem, 3.5vw, 3rem);
+  --text-eyebrow:       0.75rem;
 
-  /* Transitions */
+  /* ── Transitions ── */
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
   --transition-base: 250ms var(--ease-smooth);
 
-  /* Glass */
+  /* ── Glass ── */
   --glass-bg: rgba(14, 17, 23, 0.7);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-blur: blur(20px);
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-/* Responsive container padding overrides */
+/* Responsive container padding + section rhythm */
 @media (min-width: 768px) {
   :root {
-    --container-px-sm: 3rem;
+    --container-px: 3rem;
+    --section-py: 8rem;
+    --section-header-gap: 5rem;
+    --card-padding: 2.5rem;
+    --card-padding-lg: 3rem;
   }
 }
 @media (min-width: 1024px) {
   :root {
-    --container-px-sm: 4rem;
+    --container-px: 4rem;
+    --section-py: 9rem;
   }
 }
 
-/* ============================================================
-   RESET & BASE
-   ============================================================ */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-body);
-  font-size: 16px;
-  scroll-behavior: auto; /* Lenis handles smooth scroll */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
-}
-
-body {
-  background: var(--bg-primary);
-  overflow-x: hidden;
-  line-height: var(--line-height-body);
-  font-size: var(--font-size-body);
-}
 
 /* ============================================================
-   SCROLLBAR
+   BASE
+   These live in @layer base so Tailwind utilities (which sit in
+   @layer utilities) can always override them. Declaring them
+   unlayered — as this file used to — silently killed every
+   p-*, m-*, mb-* and space-y-* class in the project.
    ============================================================ */
-::-webkit-scrollbar {
-  width: 4px;
+@layer base {
+  /* Tailwind's preflight already zeroes margin/padding and sets
+     box-sizing on every element, so this file must not repeat it. */
+
+  html {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 16px;
+    scroll-behavior: auto; /* Lenis handles smooth scroll */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  body {
+    background: var(--bg-primary);
+    overflow-x: hidden;
+    line-height: var(--line-height-body);
+    font-size: var(--font-size-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    line-height: var(--line-height-body);
+  }
+
+  /* Anchor targets clear the floating navbar. */
+  section[id] {
+    scroll-margin-top: calc(var(--nav-h) + var(--nav-offset) + 1rem);
+  }
+
+  ::selection {
+    background: var(--accent-25);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent-40);
+    border-radius: var(--radius-full);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-primary);
+  }
+
+  button, a {
+    transition:
+      opacity var(--transition-base),
+      color var(--transition-base),
+      background var(--transition-base),
+      border-color var(--transition-base),
+      box-shadow var(--transition-base);
+  }
+
+  /* Focus states for accessibility */
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
 }
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--accent-primary);
-  border-radius: 999px;
-  opacity: 0.4;
-}
+
 
 /* ============================================================
-   SELECTION
+   COMPONENTS
+   Reusable pieces. In @layer components so a one-off Tailwind
+   utility on the element still wins.
    ============================================================ */
-::selection {
-  background: rgba(0, 217, 255, 0.25);
-  color: #fff;
-}
+@layer components {
 
-/* ============================================================
-   TYPOGRAPHY
-   ============================================================ */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: var(--line-height-heading);
-  letter-spacing: -0.02em;
-}
+  /* ── Font family helpers ── */
+  .font-display { font-family: var(--font-display); }
+  .font-body    { font-family: var(--font-body); }
+  .font-mono    { font-family: var(--font-mono); }
 
-/* Body text line height */
-p {
-  line-height: var(--line-height-body);
-}
-
-.font-display { font-family: var(--font-display); }
-.font-body    { font-family: var(--font-body); }
-.font-mono    { font-family: var(--font-mono); }
-
-/* ============================================================
-   CONTAINER UTILITY
-   ============================================================ */
-.container-section {
-  width: 100%;
-  max-width: var(--container-max);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--container-px-sm);
-  padding-right: var(--container-px-sm);
-}
-
-@media (min-width: 768px) {
+  /* ── Container ──
+     The single horizontal frame for the whole page. Every section uses
+     this, so all content lines up on one left and right edge. */
   .container-section {
-    padding-left: var(--container-px-md);
-    padding-right: var(--container-px-md);
+    width: 100%;
+    max-width: var(--container-max);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--container-px);
+    padding-right: var(--container-px);
   }
-}
 
-@media (min-width: 1024px) {
-  .container-section {
-    padding-left: var(--container-px-lg);
-    padding-right: var(--container-px-lg);
-  }
-}
-
-/* ============================================================
-   SECTION PADDING
-   ============================================================ */
-.section-padding {
-  padding-top: var(--section-py);
-  padding-bottom: var(--section-py);
-}
-
-@media (min-width: 768px) {
+  /* ── Section vertical rhythm ── */
   .section-padding {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
+    padding-top: var(--section-py);
+    padding-bottom: var(--section-py);
   }
-}
 
-@media (min-width: 1024px) {
-  .section-padding {
-    padding-top: 9rem;
-    padding-bottom: 9rem;
+  /* ── Section header ──
+     Eyebrow + title + optional lede, with one consistent gap to the
+     content beneath it. */
+  .section-header {
+    margin-bottom: var(--section-header-gap);
   }
+  .section-eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-eyebrow);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: var(--text-section-title);
+  }
+  .section-lede {
+    margin-top: 1rem;
+    max-width: 34rem;
+    font-family: var(--font-body);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+    color: var(--text-muted);
+  }
+  .section-header-center {
+    text-align: center;
+  }
+  .section-header-center .section-lede {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── Glassmorphism ── */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-card {
+    background: var(--card);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+      0 20px 60px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(0, 0, 0, 0.2),
+      0 0 40px var(--accent-04);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .glass-card:hover {
+    border-color: var(--accent-20);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+      0 28px 80px rgba(0, 0, 0, 0.7),
+      0 0 60px var(--accent-08);
+  }
+
+  /* Standard interior padding for a card. */
+  .card-pad    { padding: var(--card-padding); }
+  .card-pad-lg { padding: var(--card-padding-lg); }
+
+  /* ── Section divider / seam ──
+     .section-seam pins the rule to the section's bottom edge so it reads as
+     the boundary between two sections, instead of floating somewhere inside
+     the bottom padding as it did before. */
+  .section-divider,
+  .section-seam {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--accent-15) 20%,
+      rgba(255, 255, 255, 0.06) 50%,
+      var(--accent-15) 80%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+  .section-seam {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  /* ── Pill badge ──
+     One pill, three sizes. Previously each section rolled its own, so the
+     same badge appeared at 0.6rem, 0.7rem and 10px on one page. */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    font-family: var(--font-mono);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    white-space: nowrap;
+    transition: border-color var(--transition-base), background var(--transition-base), color var(--transition-base);
+  }
+
+  .pill:hover {
+    border-color: var(--accent-20);
+    background: var(--accent-06);
+  }
+
+  .pill-sm {
+    padding: 0.25rem 0.625rem;
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .pill-accent {
+    background: var(--accent-08);
+    border-color: var(--accent-20);
+    color: var(--accent-primary);
+  }
+  .pill-accent:hover {
+    background: var(--accent-10);
+    border-color: var(--accent-25);
+  }
+
+  .pill-gold {
+    background: var(--gold-08);
+    border-color: var(--gold-20);
+    color: var(--gold);
+  }
+  .pill-gold:hover {
+    background: var(--gold-12);
+    border-color: var(--gold-25);
+  }
+
+  /* ── Buttons ──
+     Shared geometry for the two CTA shapes used across the site. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.875rem 2rem;
+    border-radius: var(--radius-full);
+    border: 1px solid transparent;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: transform 200ms var(--ease-smooth), background var(--transition-base),
+                border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: var(--bg-primary);
+    box-shadow: 0 0 30px var(--accent-25), 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 44px var(--accent-40), 0 6px 20px rgba(0, 0, 0, 0.5);
+  }
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--border);
+    color: var(--text-primary);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .btn-secondary:hover {
+    background: var(--accent-06);
+    border-color: var(--accent-40);
+  }
+  .btn-block { width: 100%; }
+
+  /* ── Form fields ── */
+  .field-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+  .field-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--font-size-body-sm);
+    outline: none;
+    transition: border-color var(--transition-base), box-shadow var(--transition-base),
+                background var(--transition-base);
+  }
+  .field-input::placeholder { color: var(--text-muted); }
+  .field-input:focus {
+    border-color: var(--accent-40);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 3px var(--accent-08);
+  }
+  textarea.field-input { resize: vertical; min-height: 8rem; }
+
+  /* ── Glow effects ── */
+  .glow-accent {
+    box-shadow: 0 0 20px var(--accent-25), 0 0 60px var(--accent-10);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+  }
+
+  .glow-border {
+    border-color: var(--accent-40) !important;
+    box-shadow: 0 0 20px var(--accent-15), inset 0 0 20px var(--accent-06);
+  }
+
+  /* ── Gradients ── */
+  .gradient-text {
+    background: linear-gradient(135deg, #00d9ff 0%, #5eeaff 50%, #ffffff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .gradient-accent {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  }
+
+  .gradient-subtle {
+    background: linear-gradient(180deg, var(--accent-08) 0%, transparent 100%);
+  }
+
+  /* ── Animated gradient border ── */
+  .animated-border {
+    position: relative;
+  }
+
+  .animated-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 217, 255, 0.6),
+      rgba(94, 234, 255, 0.4),
+      transparent
+    );
+    background-size: 200% 200%;
+    animation: border-gradient-spin 3s linear infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 1px;
+    pointer-events: none;
+  }
+
+  /* ── Noise overlay ── */
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9000;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: noise 0.2s steps(1) infinite;
+  }
+
+  /* ── Animation helpers ── */
+  .animate-float       { animation: float 6s ease-in-out infinite; }
+  .animate-float-slow  { animation: float-slow 8s ease-in-out infinite; }
+  .animate-pulse-glow  { animation: pulse-glow 3s ease-in-out infinite; }
+  .animate-shimmer     {
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+  .animate-spin-slow   { animation: spin-slow 20s linear infinite; }
+  .animate-fade-up     { animation: fade-in-up 0.6s var(--ease-out-expo) both; }
+  .animate-blink       { animation: blink 1s ease-in-out infinite; }
 }
+
 
 /* ============================================================
-   GLASSMORPHISM UTILITIES
-   ============================================================ */
-.glass {
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-}
-
-.glass-card {
-  background: var(--card);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
-    0 20px 60px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(0, 0, 0, 0.2),
-    0 0 40px rgba(0, 217, 255, 0.04);
-  transition: border-color var(--transition-base), box-shadow var(--transition-base);
-}
-
-.glass-card:hover {
-  border-color: rgba(0, 217, 255, 0.2);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
-    0 28px 80px rgba(0, 0, 0, 0.7),
-    0 0 60px rgba(0, 217, 255, 0.08);
-}
-
-/* ============================================================
-   SECTION DIVIDER
-   ============================================================ */
-.section-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(0, 217, 255, 0.15) 20%,
-    rgba(255, 255, 255, 0.06) 50%,
-    rgba(0, 217, 255, 0.15) 80%,
-    transparent 100%
-  );
-  margin: 0;
-  pointer-events: none;
-}
-
-/* ============================================================
-   PILL BADGE UTILITY
-   ============================================================ */
-.pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.375rem 0.875rem;
-  border-radius: 9999px;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  font-family: var(--font-mono);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--text-muted);
-  white-space: nowrap;
-  transition: border-color var(--transition-base), background var(--transition-base);
-}
-
-.pill:hover {
-  border-color: rgba(0, 217, 255, 0.2);
-  background: rgba(0, 217, 255, 0.05);
-}
-
-.pill-accent {
-  background: rgba(0, 217, 255, 0.08);
-  border: 1px solid rgba(0, 217, 255, 0.2);
-  color: #00d9ff;
-}
-
-/* ============================================================
-   GLOW EFFECTS
-   ============================================================ */
-.glow-accent {
-  box-shadow: 0 0 20px rgba(0, 217, 255, 0.3), 0 0 60px rgba(0, 217, 255, 0.1);
-}
-
-.glow-text {
-  text-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
-}
-
-.glow-border {
-  border-color: rgba(0, 217, 255, 0.4) !important;
-  box-shadow: 0 0 20px rgba(0, 217, 255, 0.15), inset 0 0 20px rgba(0, 217, 255, 0.05);
-}
-
-/* ============================================================
-   GRADIENT UTILITIES
-   ============================================================ */
-.gradient-text {
-  background: linear-gradient(135deg, #00d9ff 0%, #5eeaff 50%, #ffffff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-accent {
-  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-}
-
-.gradient-subtle {
-  background: linear-gradient(180deg,
-    rgba(0, 217, 255, 0.08) 0%,
-    transparent 100%
-  );
-}
-
-/* ============================================================
-   INTERACTIVE ELEMENT HOVER STATES
-   ============================================================ */
-button, a {
-  transition: opacity var(--transition-base), color var(--transition-base), background var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
-}
-
-/* Focus states for accessibility */
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid rgba(0, 217, 255, 0.6);
-  outline-offset: 2px;
-}
-
-/* ============================================================
-   ANIMATED GRADIENT BORDER
+   KEYFRAMES
    ============================================================ */
 @keyframes border-gradient-spin {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
-}
-
-.animated-border {
-  position: relative;
-}
-
-.animated-border::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(0, 217, 255, 0.6),
-    rgba(94, 234, 255, 0.4),
-    transparent
-  );
-  background-size: 200% 200%;
-  animation: border-gradient-spin 3s linear infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  padding: 1px;
-  pointer-events: none;
-}
-
-/* ============================================================
-   NOISE OVERLAY
-   ============================================================ */
-.noise-overlay {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9000;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: noise 0.2s steps(1) infinite;
 }
 
 @keyframes noise {
@@ -401,23 +580,20 @@ textarea:focus-visible {
   100% { transform: translate(0, 0); }
 }
 
-/* ============================================================
-   KEYFRAMES
-   ============================================================ */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-12px); }
+  50%      { transform: translateY(-12px); }
 }
 
 @keyframes float-slow {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33%       { transform: translateY(-8px) rotate(2deg); }
-  66%       { transform: translateY(4px) rotate(-1deg); }
+  33%      { transform: translateY(-8px) rotate(2deg); }
+  66%      { transform: translateY(4px) rotate(-1deg); }
 }
 
 @keyframes pulse-glow {
   0%, 100% { opacity: 0.4; transform: scale(1); }
-  50%       { opacity: 0.8; transform: scale(1.05); }
+  50%      { opacity: 0.8; transform: scale(1.05); }
 }
 
 @keyframes shimmer {
@@ -431,32 +607,15 @@ textarea:focus-visible {
 }
 
 @keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+  50%      { opacity: 0; }
 }
 
-.animate-float       { animation: float 6s ease-in-out infinite; }
-.animate-float-slow  { animation: float-slow 8s ease-in-out infinite; }
-.animate-pulse-glow  { animation: pulse-glow 3s ease-in-out infinite; }
-.animate-shimmer     {
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
-  background-size: 200% 100%;
-  animation: shimmer 2s linear infinite;
-}
-.animate-spin-slow   { animation: spin-slow 20s linear infinite; }
-.animate-fade-up     { animation: fade-in-up 0.6s var(--ease-out-expo) both; }
-.animate-blink       { animation: blink 1s ease-in-out infinite; }
 
 /* ============================================================
    REDUCED MOTION
@@ -467,16 +626,29 @@ textarea:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .noise-overlay { animation: none !important; }
 }
+
 
 /* ============================================================
    CUSTOM CURSOR
+   The bespoke cursor replaces the pointer, but text fields keep a
+   real caret cursor — otherwise the contact form gives no feedback
+   about where you are typing.
    ============================================================ */
 @media (pointer: fine) {
-  body, * {
-    cursor: none !important;
+  body, body * {
+    cursor: none;
+  }
+  input,
+  textarea,
+  select,
+  [contenteditable="true"] {
+    cursor: text;
   }
 }
+
+
 /* ============================================================
    LENIS
    ============================================================ */
@@ -500,8 +672,9 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
+
 /* ============================================================
-   RESPONSIVE TYPOGRAPHY HELPERS
+   RESPONSIVE TYPOGRAPHY + OVERFLOW GUARD
    ============================================================ */
 @media (max-width: 767px) {
   html {
@@ -509,9 +682,6 @@ html.lenis, html.lenis body {
   }
 }
 
-/* ============================================================
-   NO HORIZONTAL SCROLL GUARD
-   ============================================================ */
 html, body {
   max-width: 100vw;
   overflow-x: hidden;

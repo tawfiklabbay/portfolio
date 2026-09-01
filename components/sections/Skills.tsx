@@ -25,7 +25,7 @@ const SKILLS = [
 ];
 
 const CATEGORY_COLORS: Record<string, string> = {
-  Frontend:  "rgba(0,217,255,0.15)",
+  Frontend:  "var(--accent-15)",
   Backend:   "rgba(94,234,255,0.12)",
   Language:  "rgba(120,180,255,0.12)",
   Security:  "rgba(255,100,100,0.12)",
@@ -100,7 +100,7 @@ function SkillCard({
           (e.currentTarget as HTMLDivElement).style.boxShadow =
             "0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(0,217,255,0.08)";
           (e.currentTarget as HTMLDivElement).style.borderColor =
-            "rgba(0,217,255,0.25)";
+            "var(--accent-25)";
         }}
         data-cursor-hover
       >
@@ -114,7 +114,7 @@ function SkillCard({
             border: "1px solid rgba(255,255,255,0.08)",
             fontFamily: skill.icon.length > 2 ? "var(--font-mono)" : "inherit",
             fontSize: skill.icon.length > 2 ? "0.65rem" : "1.4rem",
-            color: "#00d9ff",
+            color: "var(--accent-primary)",
             flexShrink: 0,
           }}
         >
@@ -125,7 +125,7 @@ function SkillCard({
         <span
           className="font-medium text-center leading-tight"
           style={{
-            color: "#e4e4e7",
+            color: "var(--text-bright)",
             fontFamily: "var(--font-body)",
             fontSize: "0.8125rem",
           }}
@@ -134,18 +134,7 @@ function SkillCard({
         </span>
 
         {/* Category badge */}
-        <span
-          className="tracking-widest uppercase px-2.5 py-1 rounded-full"
-          style={{
-            fontSize: "0.6rem",
-            background: "rgba(255,255,255,0.06)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            color: "var(--text-muted)",
-            fontFamily: "var(--font-mono)",
-          }}
-        >
-          {skill.category}
-        </span>
+        <span className="pill pill-sm">{skill.category}</span>
       </div>
     </motion.div>
   );
@@ -159,7 +148,7 @@ export default function Skills() {
     <section
       id="skills"
       ref={ref}
-      className="py-24 md:py-32 lg:py-36 relative"
+      className="section-padding relative"
       style={{ background: "var(--bg-secondary)" }}
       aria-label="Skills"
     >
@@ -174,44 +163,17 @@ export default function Skills() {
         aria-hidden="true"
       />
 
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "var(--container-max)",
-          marginLeft: "auto",
-          marginRight: "auto",
-          paddingLeft: "var(--container-px-sm)",
-          paddingRight: "var(--container-px-sm)",
-        }}
-      >
+      <div className="container-section">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
-          className="mb-16"
+          className="section-header"
         >
-          <p
-            className="text-xs tracking-[0.25em] uppercase mb-4"
-            style={{ color: "#00d9ff", fontFamily: "var(--font-mono)" }}
-          >
-            02 / Skills
-          </p>
-          <h2
-            className="font-display font-bold text-white mb-4"
-            style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
-          >
-            My Arsenal
-          </h2>
-          <p
-            className="text-base"
-            style={{
-              color: "var(--text-muted)",
-              fontFamily: "var(--font-body)",
-              maxWidth: "32rem",
-              lineHeight: "1.7",
-            }}
-          >
+          <p className="section-eyebrow">02 / Skills</p>
+          <h2 className="section-title">My Arsenal</h2>
+          <p className="section-lede">
             Technologies I use to build secure, performant, and elegant solutions.
           </p>
         </motion.div>
@@ -230,22 +192,9 @@ export default function Skills() {
           ))}
         </div>
 
-        {/* Bottom decorative bar */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={inView ? { scaleX: 1 } : {}}
-          transition={{ delay: 0.8, duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-          className="mt-20 h-px"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, rgba(0,217,255,0.3), transparent)",
-            transformOrigin: "left",
-          }}
-          aria-hidden="true"
-        />
       </div>
-      {/* Section divider */}
-      <div className="section-divider mt-0" aria-hidden="true" />
+      {/* Seam to the next section */}
+      <div className="section-seam" aria-hidden="true" />
     </section>
   );
 }

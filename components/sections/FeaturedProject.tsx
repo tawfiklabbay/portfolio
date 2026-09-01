@@ -226,7 +226,7 @@ export default function FeaturedProject() {
     <section
       id="project"
       ref={ref}
-      className="py-24 md:py-32 lg:py-36 relative overflow-hidden"
+      className="section-padding relative overflow-hidden"
       aria-label="Featured Project — Project Argus"
     >
       {/* Background atmosphere */}
@@ -239,35 +239,16 @@ export default function FeaturedProject() {
         aria-hidden="true"
       />
 
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "var(--container-max)",
-          marginLeft: "auto",
-          marginRight: "auto",
-          paddingLeft: "var(--container-px-sm)",
-          paddingRight: "var(--container-px-sm)",
-        }}
-      >
+      <div className="container-section">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mb-20"
+          className="section-header"
         >
-          <p
-            className="text-xs tracking-[0.25em] uppercase mb-4"
-            style={{ color: "#00d9ff", fontFamily: "var(--font-mono)" }}
-          >
-            03 / Featured Project
-          </p>
-          <h2
-            className="font-display font-bold text-white mb-4"
-            style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
-          >
-            The Centrepiece
-          </h2>
+          <p className="section-eyebrow">03 / Featured Project</p>
+          <h2 className="section-title">The Centrepiece</h2>
         </motion.div>
 
         {/* Trophy banner */}
@@ -291,7 +272,7 @@ export default function FeaturedProject() {
             <div>
               <p
                 className="text-xs tracking-widest uppercase mb-0.5"
-                style={{ color: "#ffcc44", fontFamily: "var(--font-mono)" }}
+                style={{ color: "var(--gold)", fontFamily: "var(--font-mono)" }}
               >
                 Award Winner
               </p>
@@ -313,7 +294,7 @@ export default function FeaturedProject() {
               </p>
               <p
                 className="text-sm font-semibold"
-                style={{ color: "#ffcc44" }}
+                style={{ color: "var(--gold)" }}
               >
                 Cybersecurity & Threat Intelligence
               </p>
@@ -329,46 +310,31 @@ export default function FeaturedProject() {
         >
           <SpotlightCard>
             {/* Animated gradient border */}
-            <div className="animated-border absolute inset-0 rounded-[20px]" aria-hidden="true" />
+            <div className="animated-border absolute inset-0 rounded-[var(--radius-xl)]" aria-hidden="true" />
 
-            <div className="relative" style={{ padding: "clamp(1.5rem, 4vw, 3rem)" }}>
+            <div className="relative card-pad-lg">
               <div className="grid lg:grid-cols-2 gap-12 items-start">
                 {/* Left — Info */}
                 <div className="space-y-8">
                   {/* Title block */}
                   <div>
                     <div className="flex items-center gap-3 mb-4">
-                      <span
-                        className="px-3 py-1 rounded-full text-[10px] tracking-widest uppercase font-semibold"
-                        style={{
-                          background: "rgba(0,217,255,0.1)",
-                          border: "1px solid rgba(0,217,255,0.2)",
-                          color: "#00d9ff",
-                          fontFamily: "var(--font-mono)",
-                        }}
-                      >
+                      <span className="pill pill-sm pill-accent">
                         Cybersecurity Platform
                       </span>
-                      <span
-                        className="px-3 py-1 rounded-full text-[10px] tracking-widest uppercase font-semibold"
-                        style={{
-                          background: "rgba(255,200,0,0.08)",
-                          border: "1px solid rgba(255,200,0,0.2)",
-                          color: "#ffcc44",
-                          fontFamily: "var(--font-mono)",
-                        }}
-                      >
-                        🏆 Winner
-                      </span>
+                      <span className="pill pill-sm pill-gold">🏆 Winner</span>
                     </div>
 
-                    <h3 className="font-display font-bold text-5xl text-white mb-2">
+                    <h3
+                      className="font-display font-bold text-white mb-2"
+                      style={{ fontSize: "var(--text-card-title)" }}
+                    >
                       Project{" "}
                       <span className="gradient-text glow-text">Argus</span>
                     </h3>
                     <p
                       className="text-lg"
-                      style={{ color: "#00d9ff", fontFamily: "var(--font-body)" }}
+                      style={{ color: "var(--accent-primary)", fontFamily: "var(--font-body)" }}
                     >
                       Threat Deception Platform
                     </p>
@@ -404,19 +370,19 @@ export default function FeaturedProject() {
                           <div
                             className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
                             style={{
-                              background: "rgba(0,217,255,0.08)",
+                              background: "var(--accent-08)",
                               border: "1px solid rgba(0,217,255,0.15)",
                             }}
                           >
                             <feat.icon
                               size={13}
-                              style={{ color: "#00d9ff" }}
+                              style={{ color: "var(--accent-primary)" }}
                               aria-hidden="true"
                             />
                           </div>
                           <span
                             className="text-sm"
-                            style={{ color: "#a1a1aa", fontFamily: "var(--font-body)" }}
+                            style={{ color: "var(--text-muted)", fontFamily: "var(--font-body)" }}
                           >
                             {feat.label}
                           </span>
@@ -463,7 +429,7 @@ export default function FeaturedProject() {
                         key={stat.label}
                         className="flex flex-col items-center p-4 rounded-xl text-center"
                         style={{
-                          background: "rgba(0,217,255,0.04)",
+                          background: "var(--accent-04)",
                           border: "1px solid rgba(0,217,255,0.1)",
                         }}
                       >
@@ -486,11 +452,11 @@ export default function FeaturedProject() {
                     style={{
                       background: "rgba(255,200,0,0.04)",
                       border: "1px solid rgba(255,200,0,0.12)",
-                      color: "#a1a1aa",
+                      color: "var(--text-muted)",
                       fontFamily: "var(--font-mono)",
                     }}
                   >
-                    <span style={{ color: "#ffcc44" }}>{"//"} </span>
+                    <span style={{ color: "var(--gold)" }}>{"//"} </span>
                     Demonstrates offensive security concepts, deception
                     engineering, intrusion detection, and intelligent attack
                     analysis while maintaining isolated environments for safe
@@ -502,8 +468,8 @@ export default function FeaturedProject() {
           </SpotlightCard>
         </motion.div>
       </div>
-      {/* Section divider */}
-      <div className="section-divider" aria-hidden="true" />
+      {/* Seam to the next section */}
+      <div className="section-seam" aria-hidden="true" />
     </section>
   );
 }

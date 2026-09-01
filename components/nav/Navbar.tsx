@@ -68,19 +68,14 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: isVisible ? 0 : -120, opacity: isVisible ? 1 : 0 }}
       transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
-      className="fixed top-4 left-0 right-0 z-[9000] flex justify-center px-4"
+      className="fixed left-0 right-0 z-[9000] flex justify-center px-4"
+      style={{ top: "var(--nav-offset)" }}
       role="banner"
     >
       <nav
-        className="glass flex items-center gap-1 px-2 py-2 rounded-2xl"
+        className="glass flex items-center gap-1 px-2 py-2 rounded-[var(--radius-lg)]"
         style={{
-          background: scrolled
-            ? "rgba(14, 17, 23, 0.85)"
-            : "rgba(14, 17, 23, 0.6)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,217,255,0.05) inset",
-          backdropFilter: "blur(24px)",
-          WebkitBackdropFilter: "blur(24px)",
+          background: scrolled ? "rgba(14, 17, 23, 0.85)" : "rgba(14, 17, 23, 0.6)",
         }}
         aria-label="Main navigation"
       >
@@ -101,9 +96,9 @@ export default function Navbar() {
               <div key={item.href} role="listitem" className="relative">
                 <button
                   onClick={() => scrollTo(item.href)}
-                  className="relative px-4 py-2 text-sm font-medium rounded-xl transition-colors duration-200"
+                  className="relative px-4 py-2 text-sm font-medium rounded-[var(--radius-md)] transition-colors duration-200"
                   style={{
-                    color: isActive ? "#00d9ff" : "#a1a1aa",
+                    color: isActive ? "var(--accent-primary)" : "var(--text-muted)",
                     fontFamily: "var(--font-body)",
                   }}
                   aria-current={isActive ? "page" : undefined}
@@ -111,10 +106,10 @@ export default function Navbar() {
                   {isActive && (
                     <motion.span
                       layoutId="nav-pill"
-                      className="absolute inset-0 rounded-xl"
+                      className="absolute inset-0 rounded-[var(--radius-md)]"
                       style={{
-                        background: "rgba(0,217,255,0.08)",
-                        border: "1px solid rgba(0,217,255,0.2)",
+                        background: "var(--accent-08)",
+                        border: "1px solid var(--accent-20)",
                       }}
                       transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
                     />
@@ -130,11 +125,11 @@ export default function Navbar() {
         <a
           href="#contact"
           onClick={(e) => { e.preventDefault(); scrollTo("#contact"); }}
-          className="hidden md:flex items-center gap-2 ml-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200"
+          className="hidden md:flex items-center gap-2 ml-2 px-4 py-2 rounded-[var(--radius-md)] text-sm font-semibold transition-all duration-200"
           style={{
-            background: "rgba(0,217,255,0.1)",
-            border: "1px solid rgba(0,217,255,0.25)",
-            color: "#00d9ff",
+            background: "var(--accent-10)",
+            border: "1px solid var(--accent-25)",
+            color: "var(--accent-primary)",
             fontFamily: "var(--font-body)",
           }}
           data-cursor-hover
@@ -172,23 +167,19 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.97 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full mt-2 left-4 right-4 glass rounded-2xl p-4 flex flex-col gap-2"
-            style={{
-              background: "rgba(14, 17, 23, 0.95)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              backdropFilter: "blur(24px)",
-            }}
+            className="absolute top-full mt-2 left-4 right-4 glass rounded-[var(--radius-lg)] p-4 flex flex-col gap-2"
+            style={{ background: "rgba(14, 17, 23, 0.95)" }}
           >
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.href}
                 onClick={() => scrollTo(item.href)}
-                className="w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-200"
+                className="w-full text-left px-4 py-3 rounded-[var(--radius-md)] text-sm font-medium transition-colors duration-200"
                 style={{
-                  color: activeSection === item.href.replace("#", "") ? "#00d9ff" : "#a1a1aa",
+                  color: activeSection === item.href.replace("#", "") ? "var(--accent-primary)" : "var(--text-muted)",
                   background:
                     activeSection === item.href.replace("#", "")
-                      ? "rgba(0,217,255,0.08)"
+                      ? "var(--accent-08)"
                       : "transparent",
                   fontFamily: "var(--font-body)",
                 }}
